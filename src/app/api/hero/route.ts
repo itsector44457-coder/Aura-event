@@ -4,7 +4,7 @@ import Hero from '@/models/Hero';
 import jwt from 'jsonwebtoken';
 
 // Protect middleware helper
-const protect = async (req: Request) => {
+const protect = async (req: any) => {
     const token = req.cookies.get('token')?.value;
     if (!token) throw new Error('Not authorized');
     jwt.verify(token, process.env.JWT_SECRET || 'secret');

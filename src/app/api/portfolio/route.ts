@@ -3,7 +3,7 @@ import { connectDB } from '@/lib/db';
 import PortfolioItem from '@/models/PortfolioItem';
 import jwt from 'jsonwebtoken';
 
-const protect = async (req: Request) => {
+const protect = async (req: any) => {
     const token = req.cookies.get('token')?.value;
     if (!token) throw new Error('Not authorized');
     jwt.verify(token, process.env.JWT_SECRET || 'secret');
