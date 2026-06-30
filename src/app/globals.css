@@ -1,26 +1,50 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary-gold: #d4af37;
+  --color-primary-gold-hover: #b5952f;
+  --color-bg-dark: #050505;
+  --color-surface: rgba(25, 25, 25, 0.6);
+  --color-surface-hover: rgba(40, 40, 40, 0.8);
+  --color-text-main: #f5f5f5;
+  --color-text-muted: #a0a0a0;
+  
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --animate-fade-in-up: fade-in-up 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 400;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base utility for intersection observer elements before they appear */
+@layer utilities {
+  .invisible-before-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 }
