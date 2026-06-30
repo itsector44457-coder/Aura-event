@@ -15,7 +15,7 @@ export async function POST(req: Request) {
         }
 
         const admin = await Admin.findOne({ email });
-        if (admin && (await admin.matchPassword(password))) {
+        if (admin && (await (admin as any).matchPassword(password))) {
             const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET || 'secret', { expiresIn: '30d' });
             
             const response = NextResponse.json({ _id: admin._id, name: admin.name, email: admin.email });
